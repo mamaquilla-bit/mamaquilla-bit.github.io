@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MamaQuilla · Tostaduría y Cafetería</title>
+<meta name="description" content="MamaQuilla: tostaduría y cafetería en Lima. Café peruano tostado en casa, del grano a tu taza. También atendemos eventos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noche:#0b1222; --noche-2:#121b30; --tinta:#1d1712;
+  --crema:#f4ecdf; --crema-2:#e9dcc6; --arena:#cdbb9f;
+  --terracota:#b8432f; --oro:#d9a35b; --cafe:#5a3a24;
+  --texto-claro:#efe6d6; --texto-suave:#b9b2a6;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --radio:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--noche);color:var(--texto-claro);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+
+/* ---------- Navegación ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,4vw,40px);transition:background .4s,backdrop-filter .4s}
+.nav.solid{background:rgba(11,18,34,.82);backdrop-filter:blur(12px)}
+.logo{font-family:var(--serif);font-size:1.45rem;letter-spacing:.01em;text-decoration:none;line-height:1}
+.logo b{color:var(--terracota);font-weight:600}
+.logo small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--oro);margin-top:4px}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:.9rem}
+.nav ul a{text-decoration:none;color:var(--texto-suave);transition:color .2s}
+.nav ul a:hover{color:var(--crema)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;border:0;font:600 .9rem var(--sans);cursor:pointer;text-decoration:none;transition:transform .2s,background .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-oro{background:var(--oro);color:#1b120a;box-shadow:0 8px 30px rgba(217,163,91,.25)}
+.btn-linea{background:transparent;color:var(--crema);border:1px solid rgba(239,230,214,.35)}
+.btn svg{width:18px;height:18px}
+@media (max-width:860px){.nav ul{display:none}}
+@media (max-width:560px){.nav .btn{display:none}}
+
+/* ---------- Hero con scroll ---------- */
+.hero{position:relative;height:420vh}
+.hero-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0a1020}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .poster{display:none}
+.hero-velo{position:absolute;inset:0;background:
+  radial-gradient(ellipse at center,transparent 45%,rgba(8,12,24,.55) 100%),
+  linear-gradient(to bottom,rgba(8,12,24,.55),transparent 22%,transparent 70%,rgba(8,12,24,.9));pointer-events:none}
+.destello{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 58%,#fff1d6 0%,#f2c98a 26%,rgba(217,163,91,.85) 46%,rgba(120,80,40,.55) 72%,rgba(11,18,34,.35) 100%);opacity:0;pointer-events:none}
+.paso{position:absolute;left:0;right:0;text-align:center;padding:0 20px;opacity:0;transform:translateY(24px);transition:none;pointer-events:none}
+.paso.arriba{top:15vh}.paso.abajo{bottom:14vh}
+@media (min-width:861px){
+  .paso{left:clamp(24px,7vw,110px);right:auto;width:min(520px,38vw);text-align:left;padding:0}
+  .paso.arriba,.paso.abajo{top:50%;bottom:auto;margin-top:-90px}
+  .paso p{margin-left:0}
+  .paso.final .acciones{justify-content:flex-start}
+  .paso.final{width:min(420px,29vw)}
+  .paso.final h1{font-size:clamp(2.4rem,4.4vw,3.8rem)}
+  .hero-velo{background:
+    linear-gradient(90deg,rgba(8,12,24,.82) 0%,rgba(8,12,24,.45) 32%,transparent 55%),
+    linear-gradient(to bottom,rgba(8,12,24,.5),transparent 20%,transparent 75%,rgba(8,12,24,.85))}
+}
+@media (max-width:860px){
+  .paso.arriba,.paso.abajo{top:auto;bottom:11vh}
+  .hero-velo{background:linear-gradient(to bottom,rgba(8,12,24,.55),transparent 22%,transparent 48%,rgba(8,12,24,.92) 88%)}
+  .paso h1,.paso h2{font-size:clamp(2rem,9vw,2.8rem)}
+}
+.kicker{display:inline-block;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oro);margin-bottom:14px}
+.paso h1,.paso h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,6.2vw,4.8rem);line-height:1.05;margin:0;text-shadow:0 4px 40px rgba(0,0,0,.6)}
+.paso p{max-width:520px;margin:16px auto 0;color:var(--texto-suave);font-size:clamp(.95rem,1.6vw,1.1rem);text-shadow:0 2px 20px rgba(0,0,0,.7)}
+.paso.final{pointer-events:auto}
+.paso.final .acciones{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.paso h1 b{color:var(--terracota);font-weight:600}
+.indicador{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--texto-suave);display:flex;flex-direction:column;align-items:center;gap:10px;transition:opacity .4s}
+.indicador i{width:1px;height:42px;background:linear-gradient(var(--oro),transparent);animation:baja 1.8s ease-in-out infinite}
+@keyframes baja{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.barra{position:absolute;left:0;bottom:0;height:2px;background:var(--oro);width:0}
+.cargando{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--texto-suave)}
+
+/* ---------- Secciones ---------- */
+section{position:relative}
+.seccion{padding:clamp(80px,12vw,140px) 0}
+.etiqueta{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--oro)}
+h2.titulo{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.1;margin:12px 0 18px}
+.lead{font-size:1.06rem;color:var(--texto-suave);max-width:560px}
+.revela{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
+.revela.ver{opacity:1;transform:none}
+
+/* Historia */
+.historia{background:linear-gradient(var(--noche),var(--noche-2))}
+.historia .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.foto-marco{position:relative;border-radius:var(--radio);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.foto-marco img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.sello{position:absolute;right:-18px;bottom:-22px;width:150px;padding:10px;background:var(--crema);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.4);transform:rotate(4deg)}
+.sello img{border-radius:8px}
+.cifras{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap}
+.cifras div{font-size:.85rem;color:var(--texto-suave)}
+.cifras strong{display:block;font-family:var(--serif);font-weight:400;font-size:2rem;color:var(--crema)}
+@media (max-width:860px){.historia .grid{grid-template-columns:1fr}.sello{width:120px;right:10px}}
+
+/* Carta */
+.carta{background:var(--crema);color:var(--tinta)}
+.carta .etiqueta{color:var(--terracota)}
+.carta .lead{color:#5d5246}
+.cabecera-carta{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.pestanas{display:flex;gap:8px;flex-wrap:wrap}
+.pestanas button{border:1px solid #d4c4aa;background:transparent;color:#5d5246;padding:9px 18px;border-radius:999px;font:500 .88rem var(--sans);cursor:pointer;transition:all .2s}
+.pestanas button[aria-selected="true"]{background:var(--tinta);color:var(--crema);border-color:var(--tinta)}
+.items{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 56px}
+.item{display:grid;grid-template-columns:1fr auto;gap:4px 18px;padding:20px 0;border-bottom:1px dashed #d4c4aa}
+.item h3{margin:0;font-family:var(--serif);font-weight:600;font-size:1.15rem}
+.item p{grid-column:1/-1;margin:0;color:#6d6256;font-size:.92rem}
+.precio{font-weight:600;color:var(--terracota);white-space:nowrap}
+.nota-carta{margin-top:28px;font-size:.85rem;color:#8a7d6c}
+@media (max-width:760px){.items{grid-template-columns:1fr}}
+
+/* Galería */
+.galeria{background:var(--crema-2);color:var(--tinta);padding-bottom:clamp(80px,12vw,140px)}
+.galeria .etiqueta{color:var(--terracota)}
+.mosaico{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:260px;gap:16px;margin-top:34px}
+.mosaico figure{margin:0;border-radius:var(--radio);overflow:hidden;position:relative;background:#d8c9b0}
+.mosaico figure:first-child{grid-row:span 2}
+.mosaico figure:nth-child(2){grid-column:span 2}
+.mosaico img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.mosaico figure:hover img{transform:scale(1.04)}
+.mosaico figcaption{position:absolute;left:14px;bottom:14px;right:14px;width:fit-content;background:rgba(244,236,223,.92);color:var(--tinta);font-size:.8rem;font-weight:500;padding:6px 12px;border-radius:999px}
+@media (max-width:760px){.mosaico{grid-template-columns:1fr 1fr;grid-auto-rows:190px}.mosaico figure:first-child{grid-row:span 1;grid-column:span 2;}.mosaico figure:first-child,.mosaico figure:nth-child(2){grid-column:span 2}}
+
+/* Servicios */
+.servicios{background:var(--noche-2)}
+.tarjetas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.tarjeta{border:1px solid rgba(239,230,214,.12);border-radius:var(--radio);padding:30px;background:linear-gradient(160deg,rgba(255,255,255,.04),transparent)}
+.tarjeta .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(217,163,91,.14);color:var(--oro);margin-bottom:18px}
+.tarjeta .ico svg{width:24px;height:24px}
+.tarjeta h3{font-family:var(--serif);font-weight:400;font-size:1.45rem;margin:0 0 8px}
+.tarjeta p{margin:0;color:var(--texto-suave);font-size:.95rem}
+@media (max-width:860px){.tarjetas{grid-template-columns:1fr}}
+
+/* Visítanos */
+.visita{background:var(--noche)}
+.visita .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.datos{display:grid;gap:22px;margin:30px 0}
+.dato{display:flex;gap:16px}
+.dato svg{flex:none;width:22px;height:22px;color:var(--oro);margin-top:3px}
+.dato strong{display:block;font-weight:600}
+.dato span{color:var(--texto-suave)}
+.mapa{position:relative;border-radius:var(--radio);overflow:hidden;aspect-ratio:4/3.4;background:var(--noche-2) url(assets/poster-final.jpg) center/cover;box-shadow:0 0 0 1px rgba(217,163,91,.25),0 30px 80px rgba(0,0,0,.45)}
+.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.85) contrast(1.02)}
+.locales-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.locales-tabs button{border:1px solid rgba(239,230,214,.25);background:transparent;color:var(--texto-suave);padding:9px 18px;border-radius:999px;font:500 .88rem var(--sans);cursor:pointer}
+.locales-tabs button[aria-selected="true"]{background:var(--oro);color:#1b120a;border-color:var(--oro)}
+@media (max-width:860px){.mapa{aspect-ratio:1/1}}
+@media (max-width:860px){.visita .grid{grid-template-columns:1fr}}
+
+footer{border-top:1px solid rgba(239,230,214,.1);padding:36px 0;font-size:.85rem;color:var(--texto-suave)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.redes{display:flex;gap:16px}
+.redes a{text-decoration:none}
+.redes a:hover{color:var(--oro)}
+.panel-link{background:none;border:0;color:var(--texto-suave);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+.wsp-flotante{position:fixed;right:18px;bottom:18px;z-index:40;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .2s}
+.wsp-flotante:hover{transform:scale(1.07)}
+.wsp-flotante.oculto{opacity:0;transform:scale(.6);pointer-events:none}
+.wsp-flotante{transition:transform .25s,opacity .25s}
+@media (max-height:500px) and (orientation:landscape){
+  .paso.arriba,.paso.abajo{bottom:6vh}
+  .paso h1,.paso h2{font-size:1.9rem}
+  .paso .kicker{margin-bottom:6px}
+  .paso p{display:none}
+  .paso.final .acciones{margin-top:12px}
+  .indicador{display:none}
+}
+.wsp-flotante svg{width:30px;height:30px;color:#fff}
+
+/* ---------- Panel de la dueña ---------- */
+.panel{position:fixed;inset:0;z-index:100;display:none;background:rgba(5,8,16,.7);backdrop-filter:blur(6px)}
+.panel.abierto{display:flex;justify-content:flex-end}
+.panel-caja{width:min(640px,100%);height:100%;overflow:auto;background:var(--crema);color:var(--tinta);padding:28px clamp(18px,4vw,34px) 120px}
+.panel h2{font-family:var(--serif);font-weight:600;margin:0 0 4px;font-size:1.6rem}
+.panel .ayuda{font-size:.85rem;color:#6d6256;margin:0 0 18px}
+.aviso{background:#fff4dc;border:1px solid #ecd39c;color:#6b4e12;font-size:.82rem;padding:10px 14px;border-radius:10px;margin-bottom:18px}
+.p-tabs{display:flex;gap:8px;margin-bottom:20px}
+.p-tabs button{flex:1;padding:10px;border-radius:10px;border:1px solid #d4c4aa;background:#fff;font:600 .88rem var(--sans);cursor:pointer;color:var(--tinta)}
+.p-tabs button[aria-selected="true"]{background:var(--tinta);color:var(--crema)}
+.p-cat{background:#fff;border:1px solid #e3d6bf;border-radius:14px;padding:16px;margin-bottom:16px}
+.p-cat-head{display:flex;gap:10px;margin-bottom:10px}
+.p-cat-head input{font-weight:600;font-size:1rem}
+.p-item{display:grid;grid-template-columns:1.2fr 1.6fr 90px 36px;gap:8px;margin-bottom:8px;align-items:start}
+.panel input,.panel textarea{width:100%;padding:9px 11px;border:1px solid #d4c4aa;border-radius:8px;font:inherit;font-size:.9rem;background:#fffdf9;color:var(--tinta)}
+.panel textarea{resize:vertical;min-height:40px}
+.panel label{display:block;font-size:.8rem;font-weight:600;margin:14px 0 6px;color:#5d5246}
+.ico-btn{width:36px;height:38px;border-radius:8px;border:1px solid #e6c7bf;background:#fff;color:var(--terracota);cursor:pointer;font-size:1.1rem}
+.mini{background:none;border:1px dashed #b9a684;border-radius:8px;padding:8px 12px;font:500 .85rem var(--sans);cursor:pointer;color:#5d5246}
+.panel-pie{position:fixed;bottom:0;right:0;width:min(640px,100%);display:flex;gap:10px;flex-wrap:wrap;padding:14px clamp(18px,4vw,34px);background:#efe4d1;border-top:1px solid #d4c4aa}
+.panel-pie .btn{padding:10px 16px}
+.btn-tinta{background:var(--tinta);color:var(--crema)}
+.btn-claro{background:#fff;color:var(--tinta);border:1px solid #d4c4aa}
+.cerrar{position:absolute;top:18px;right:18px}
+.p-fotos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.p-foto{background:#fff;border:1px solid #e3d6bf;border-radius:12px;overflow:hidden}
+.p-foto img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.p-foto .cuerpo{padding:10px;display:grid;gap:8px}
+.p-foto .acciones{display:flex;gap:6px}
+.p-foto .acciones button{flex:1;height:34px;border-radius:8px;border:1px solid #d4c4aa;background:#fff;cursor:pointer;font-size:.9rem;color:var(--tinta)}
+.p-foto .acciones .rojo{color:var(--terracota);border-color:#e6c7bf}
+.panel .subir{margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:150px;border:2px dashed #b9a684;border-radius:12px;cursor:pointer;color:#5d5246;font-weight:600;font-size:.9rem;text-align:center;padding:12px}
+.subir small{font-weight:400;color:#8a7d6c}
+.login{max-width:360px;margin:30px auto;display:grid;gap:4px}
+.login .btn{justify-content:center;margin-top:16px}
+.estado{font-size:.8rem;color:#6d6256;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.estado button{background:none;border:0;color:var(--terracota);cursor:pointer;font:inherit;text-decoration:underline}
+.p-tabs{flex-wrap:wrap}.p-tabs button{min-width:120px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--tinta);color:var(--crema);padding:10px 18px;border-radius:999px;font-size:.88rem;z-index:120;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.ver{opacity:1}
+@media (max-width:560px){.p-item{grid-template-columns:1fr 90px 36px}.p-item .p-desc{grid-column:1/-1;order:4}}
+
+@media (prefers-reduced-motion:reduce){
+  .hero{height:auto}.hero-sticky{position:relative}
+  .hero video{display:none}.hero .poster{display:block}
+  .paso{opacity:0}.paso.final{opacity:1;transform:none}
+  .indicador,.destello{display:none}
+  .revela{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#inicio" class="logo">Mama<b>Q</b>uilla<small>Tostaduría · Cafetería</small></a>
+  <ul>
+    <li><a href="#historia">Nosotras</a></li>
+    <li><a href="#carta">Carta</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#servicios">Eventos</a></li>
+    <li><a href="#visitanos">Visítanos</a></li>
+  </ul>
+  <a class="btn btn-oro js-wsp" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+</nav>
+
+<!-- HERO: el video avanza con el scroll -->
+<header class="hero" id="inicio">
+  <div class="hero-sticky">
+    <video id="video" muted playsinline preload="auto" poster="assets/poster-inicio.jpg"
+      data-src="assets/cafe.mp4" data-src-movil="assets/cafe-movil.mp4"></video>
+    <img class="poster" src="assets/poster-final.jpg" alt="Taza de café con arte latte en forma de luna sobre una piedra">
+    <div class="destello" id="destello"></div>
+    <div class="hero-velo"></div>
+
+    <div class="paso arriba" data-desde="0" data-hasta=".2">
+      <span class="kicker">Café tostado en casa</span>
+      <h2>Todo empieza<br>con un grano.</h2>
+    </div>
+    <div class="paso abajo" data-desde=".26" data-hasta=".5">
+      <span class="kicker">Tostado con paciencia</span>
+      <h2>Lo abrimos con calma.</h2>
+      <p>Escogemos el mejor café peruano y lo tostamos nosotras mismas, poquito a poquito.</p>
+    </div>
+    <div class="paso arriba" data-desde=".54" data-hasta=".78">
+      <span class="kicker">Molido al momento</span>
+      <h2>Y lo dejamos fluir.</h2>
+    </div>
+    <div class="paso abajo final" data-desde=".9" data-hasta="1.1">
+      <span class="kicker">Del grano a tu taza</span>
+      <h1>Mama<b>Q</b>uilla</h1>
+      <p>Café peruano de calidad, tostado y preparado por nosotras.</p>
+      <div class="acciones">
+        <a href="#carta" class="btn btn-oro">Ver la carta</a>
+        <a href="#visitanos" class="btn btn-linea">Cómo llegar</a>
+      </div>
+    </div>
+
+    <div class="indicador" id="indicador"><span>Desliza</span><i></i></div>
+    <div class="cargando" id="cargando">Preparando el café…</div>
+    <div class="barra" id="barra"></div>
+  </div>
+</header>
+
+<main>
+  <section class="seccion historia" id="historia">
+    <div class="wrap grid">
+      <div class="revela">
+        <span class="etiqueta">Nosotras</span>
+        <h2 class="titulo">Mama Quilla, la luna que cuida la cosecha.</h2>
+        <p class="lead">En la tradición andina, Mama Quilla es la madre luna. Así quisimos llamar a nuestra casa: un lugar donde el café se trata con respeto, desde la chacra hasta la taza.</p>
+        <p class="lead">Tostamos nuestro propio café y lo preparamos al momento, como se debe. En 2025 nos reconoció <strong>Slow Food</strong>, una red internacional que apoya el café rico, sano y que paga justo al agricultor.</p>
+        <div class="cifras">
+          <div><strong>100%</strong>café peruano</div>
+          <div><strong>Tostado</strong>en casa</div>
+          <div><strong>2025</strong>reconocidas por Slow Food</div>
+        </div>
+      </div>
+      <div class="revela" style="position:relative">
+        <div class="foto-marco"><img src="assets/equipo.jpg" alt="El equipo de MamaQuilla en su cafetería" loading="lazy"></div>
+        <div class="sello"><img src="assets/slowfood.jpg" alt="Reconocimiento Slow Food Coffee Coalition Roastery 2025" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion carta" id="carta">
+    <div class="wrap">
+      <div class="cabecera-carta revela">
+        <div>
+          <span class="etiqueta">Nuestra carta</span>
+          <h2 class="titulo">Para cada momento del día.</h2>
+          <p class="lead">Cafés clásicos, café pasado, especiales de la casa y algo dulce para acompañar.</p>
+        </div>
+        <div class="pestanas" id="pestanas" role="tablist"></div>
+      </div>
+      <div class="items" id="items"></div>
+      <p class="nota-carta" id="nota-carta"></p>
+    </div>
+  </section>
+
+  <section class="galeria" id="galeria">
+    <div class="wrap">
+      <div class="revela">
+        <span class="etiqueta">Galería</span>
+        <h2 class="titulo">Hecho a mano, servido con calma.</h2>
+      </div>
+      <div class="mosaico revela" id="mosaico"></div>
+    </div>
+  </section>
+
+  <section class="seccion servicios" id="servicios">
+    <div class="wrap">
+      <div class="revela">
+        <span class="etiqueta">Más que una cafetería</span>
+        <h2 class="titulo">Café en tu mesa, en tu casa y en tu evento.</h2>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta revela">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="12" rx="6" ry="9" transform="rotate(25 12 12)"/><path d="M9 4.5c3 4 3 11 6 15"/></svg></div>
+          <h3>Café en grano</h3>
+          <p>Llévate nuestro café recién tostado, en grano o molido para tu cafetera.</p>
+        </article>
+        <article class="tarjeta revela">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6V9Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg></div>
+          <h3>Café preparado al momento</h3>
+          <p>Café pasado, espresso, café helado y especiales de la casa, preparados por nuestras baristas.</p>
+        </article>
+        <article class="tarjeta revela">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg></div>
+          <h3>Café para tus eventos</h3>
+          <p>Llevamos el café y los bocaditos a tu cumpleaños, reunión o evento de empresa. Escríbenos y te cotizamos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion visita" id="visitanos">
+    <div class="wrap grid">
+      <div class="revela">
+        <span class="etiqueta">Visítanos</span>
+        <h2 class="titulo">Te esperamos con el café listo.</h2>
+        <div class="locales-tabs" id="locales-tabs" role="tablist"></div>
+        <div class="datos">
+          <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><div><strong>Dirección</strong><span id="d-direccion"></span></div></div>
+          <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><strong>Horario</strong><span id="d-horario"></span></div></div>
+          <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><div><strong>WhatsApp</strong><span id="d-telefono"></span></div></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-oro" id="btn-mapa" href="#" target="_blank" rel="noopener">Cómo llegar</a>
+          <a class="btn btn-linea js-wsp" href="#" target="_blank" rel="noopener">Escríbenos</a>
+        </div>
+      </div>
+      <div class="revela"><div class="mapa"><iframe id="mapa" title="Mapa de MamaQuilla" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="anio"></span> MamaQuilla · Tostaduría · Cafetería · Eventos</span>
+    <div class="redes">
+      <a id="r-instagram" href="#" target="_blank" rel="noopener">Instagram</a>
+      <a id="r-facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+      <button class="panel-link" id="abrir-panel">Administrar</button>
+    </div>
+  </div>
+</footer>
+
+<a class="wsp-flotante js-wsp" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4a.5.5 0 0 0 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>
+</a>
+
+<!-- Panel de administración -->
+<div class="panel" id="panel" aria-hidden="true">
+  <div class="panel-caja" role="dialog" aria-label="Panel de administración">
+    <button class="btn btn-claro cerrar" id="cerrar-panel">Cerrar</button>
+    <h2>Administrar la web</h2>
+    <p class="ayuda">Cambia precios, productos, fotos y datos de los locales. Al guardar, la página se actualiza para todos.</p>
+    <div class="aviso" id="aviso-panel" hidden>Modo de prueba: todavía no está conectada la base de datos, así que los cambios se guardan solo en esta pestaña. Usa «Descargar respaldo» para no perderlos.</div>
+    <div id="p-login" hidden>
+      <form class="login" id="form-login">
+        <label for="l-correo">Correo</label><input id="l-correo" type="email" autocomplete="username" required>
+        <label for="l-clave">Contraseña</label><input id="l-clave" type="password" autocomplete="current-password" required>
+        <button class="btn btn-tinta" type="submit">Entrar</button>
+        <p class="ayuda" id="l-error" style="color:var(--terracota);margin-top:8px"></p>
+      </form>
+    </div>
+    <div id="p-editor">
+      <div class="estado" id="estado"></div>
+      <div class="p-tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-ptab="carta">Carta y precios</button>
+        <button role="tab" aria-selected="false" data-ptab="fotos">Fotos</button>
+        <button role="tab" aria-selected="false" data-ptab="locales">Locales</button>
+        <button role="tab" aria-selected="false" data-ptab="datos">Contacto</button>
+      </div>
+      <div id="p-carta" data-pnl="carta"></div>
+      <div id="p-fotos" data-pnl="fotos" hidden></div>
+      <div id="p-locales" data-pnl="locales" hidden></div>
+      <div id="p-datos" data-pnl="datos" hidden></div>
+    </div>
+  </div>
+  <div class="panel-pie" id="panel-pie">
+    <button class="btn btn-tinta" id="guardar">Guardar cambios</button>
+    <button class="btn btn-claro" id="descargar">Descargar respaldo</button>
+    <label class="btn btn-claro" style="margin:0">Cargar respaldo<input type="file" id="cargar" accept="application/json" hidden></label>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script>
+/* ============ DATOS (editables desde el panel) ============ */
+const DATOS_INICIALES = {
+  info: {
+    whatsapp: "51947344217",
+    mensaje: "Hola MamaQuilla, quisiera hacer un pedido",
+    instagram: "https://www.instagram.com/mamaquilla_tostaduria/",
+    facebook: "https://www.facebook.com/MamaQuillaTostaduria/",
+    nota: "Precios en soles. Pregunta por el café del día."
+  },
+  locales: [
+    { nombre: "Pachacámac", direccion: "Av. Manuel Valle 1101, Pachacámac, Lima", mapa: "MamaQuilla Tostaduría, Av. Manuel Valle 1101, Pachacamac", horario: "Mar a sáb 7:30 – 18:30 · Dom 9:00 – 18:30" },
+    { nombre: "Surco", direccion: "Jr. Esteban Camere 157, San Roque, Santiago de Surco", mapa: "Jr. Esteban Camere 157, Santiago de Surco, Lima", horario: "Lun a dom 9:00 – 19:00" }
+  ],
+  galeria: [
+    { src: "assets/bandeja.jpg", texto: "Para probar de todo" },
+    { src: "assets/galletas.jpg", texto: "Galletas de avena caseras" },
+    { src: "assets/martini.jpg", texto: "Cocteles con café" },
+    { src: "assets/poster-final.jpg", texto: "Nuestra luna" }
+  ],
+  categorias: [
+    { nombre: "Cafés clásicos", items: [
+      { nombre: "Espresso", desc: "Café corto y bien cargado.", precio: "S/ 7" },
+      { nombre: "Americano", desc: "Café negro, más suave.", precio: "S/ 8" },
+      { nombre: "Cortado", desc: "Café cargado con un chorrito de leche.", precio: "S/ 9" },
+      { nombre: "Cappuccino", desc: "Café con leche espumosa.", precio: "S/ 11" },
+      { nombre: "Latte Quilla", desc: "Café con leche, con dibujo de luna.", precio: "S/ 12" },
+      { nombre: "Flat white", desc: "Café con leche, más cargado y con poca espuma.", precio: "S/ 12" }
+    ]},
+    { nombre: "Café pasado", items: [
+      { nombre: "Café pasado V60", desc: "Pasado a mano, suave y aromático.", precio: "S/ 14" },
+      { nombre: "Café pasado para dos", desc: "En jarra, para compartir.", precio: "S/ 22" },
+      { nombre: "Prensa francesa", desc: "Café con más cuerpo.", precio: "S/ 13" },
+      { nombre: "Café helado", desc: "Preparado en frío por 18 horas. Refrescante.", precio: "S/ 13" }
+    ]},
+    { nombre: "Especiales de la casa", items: [
+      { nombre: "Café con tónica", desc: "Café sobre agua tónica con limón, bien helado.", precio: "S/ 14" },
+      { nombre: "Coctel de café", desc: "Café con espuma cremosa y granos tostados.", precio: "S/ 22" },
+      { nombre: "Café con chocolate", desc: "Café, cacao peruano y leche.", precio: "S/ 13" }
+    ]},
+    { nombre: "Para acompañar", items: [
+      { nombre: "Galletas de avena", desc: "Caseras, con avena entera.", precio: "S/ 6" },
+      { nombre: "Torta del día", desc: "Pregunta por la de hoy.", precio: "S/ 12" },
+      { nombre: "Sánguche de la casa", desc: "Pan artesanal y relleno del día.", precio: "S/ 16" }
+    ]},
+    { nombre: "Café para tu casa", items: [
+      { nombre: "Bolsa de 250 g", desc: "Tostado en casa. En grano o molido para tu cafetera.", precio: "S/ 45" },
+      { nombre: "Bolsa de 500 g", desc: "Para la casa o la oficina.", precio: "S/ 85" }
+    ]}
+  ]
+};
+let datos = JSON.parse(JSON.stringify(DATOS_INICIALES));
+
+/* ============ VIDEO CONTROLADO POR SCROLL ============ */
+(function(){
+  const video = document.getElementById('video');
+  const hero = document.getElementById('inicio');
+  const pasos = [...document.querySelectorAll('.paso')];
+  const destello = document.getElementById('destello');
+  const barra = document.getElementById('barra');
+  const indicador = document.getElementById('indicador');
+  const cargando = document.getElementById('cargando');
+  const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducido) { cargando.remove(); return; }
+
+  video.src = (innerWidth < 768 || !video.dataset.src) ? video.dataset.srcMovil : video.dataset.src;
+  let duracion = 0, objetivo = 0, actual = 0;
+  video.addEventListener('loadedmetadata', () => { duracion = video.duration; video.pause(); cargando.remove(); });
+  // Desbloqueo para iPhone: reproducir y pausar al primer toque
+  const desbloquear = () => { video.play().then(() => video.pause()).catch(()=>{}); removeEventListener('touchstart', desbloquear); };
+  addEventListener('touchstart', desbloquear, { passive: true });
+
+  const limitar = (v,a,b) => Math.min(b, Math.max(a, v));
+  function progreso(){
+    const r = hero.getBoundingClientRect();
+    return limitar(-r.top / (r.height - innerHeight), 0, 1);
+  }
+  function pintar(p){
+    // textos
+    pasos.forEach(el => {
+      const a = +el.dataset.desde, b = +el.dataset.hasta, borde = .05;
+      let o = 0;
+      if (p >= a && p <= b) o = Math.min((p - a) / borde, (b - p) / borde, 1);
+      el.style.opacity = limitar(o, 0, 1);
+      el.style.transform = `translateY(${(1 - limitar(o,0,1)) * 24}px)`;
+    });
+    // destello dorado que cubre el fundido (~85% del video)
+    const d = 1 - Math.abs(p - .852) / .034;
+    destello.style.opacity = Math.pow(limitar(d * 1.6, 0, 1), .8);
+    barra.style.width = (p * 100) + '%';
+    indicador.style.opacity = p > .03 ? 0 : 1;
+    objetivo = p * Math.max(duracion - .05, 0);
+  }
+  function bucle(){
+    if (duracion) {
+      actual += (objetivo - actual) * .18;
+      if (Math.abs(objetivo - actual) > .001 && !video.seeking) video.currentTime = actual;
+    }
+    requestAnimationFrame(bucle);
+  }
+  addEventListener('scroll', () => pintar(progreso()), { passive: true });
+  addEventListener('resize', () => pintar(progreso()));
+  pintar(progreso()); bucle();
+})();
+
+/* ============ NAV, REVELADO, AÑO ============ */
+const nav = document.getElementById('nav');
+const wspFlot = document.querySelector('.wsp-flotante'), heroEl = document.getElementById('inicio');
+function alScroll(){
+  nav.classList.toggle('solid', scrollY > innerHeight * 3.6);
+  // en celular, el botón flotante aparece al salir del video (el video ya tiene sus propios botones)
+  wspFlot.classList.toggle('oculto', innerWidth < 861 && heroEl.getBoundingClientRect().bottom > innerHeight * 1.05);
+}
+addEventListener('scroll', alScroll, { passive: true }); addEventListener('resize', alScroll); alScroll();
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('ver'); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.revela').forEach(el => io.observe(el));
+document.getElementById('anio').textContent = new Date().getFullYear();
+
+/* ============ PINTAR CARTA Y DATOS ============ */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let catActiva = 0;
+function pintarCarta(){
+  const tabs = document.getElementById('pestanas'), cont = document.getElementById('items');
+  if (catActiva >= datos.categorias.length) catActiva = 0;
+  tabs.innerHTML = datos.categorias.map((c,i) => `<button role="tab" aria-selected="${i===catActiva}" data-i="${i}">${esc(c.nombre)}</button>`).join('');
+  const cat = datos.categorias[catActiva];
+  cont.innerHTML = cat ? cat.items.map(it => `<div class="item"><h3>${esc(it.nombre)}</h3><span class="precio">${esc(it.precio)}</span>${it.desc ? `<p>${esc(it.desc)}</p>` : ''}</div>`).join('') : '';
+  document.getElementById('nota-carta').textContent = datos.info.nota || '';
+}
+document.getElementById('pestanas').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return; catActiva = +b.dataset.i; pintarCarta();
+});
+let localActivo = 0;
+function normalizar(d){
+  const base = JSON.parse(JSON.stringify(DATOS_INICIALES));
+  if (!d || typeof d !== 'object') return base;
+  return {
+    info: { ...base.info, ...(d.info || {}) },
+    locales: Array.isArray(d.locales) && d.locales.length ? d.locales : (d.info && d.info.direccion ? [{ nombre:'Local', direccion:d.info.direccion, mapa:d.info.mapa||d.info.direccion, horario:d.info.horario||'' }] : base.locales),
+    galeria: Array.isArray(d.galeria) ? d.galeria : base.galeria,
+    categorias: Array.isArray(d.categorias) && d.categorias.length ? d.categorias : base.categorias
+  };
+}
+function pintarInfo(){
+  const i = datos.info, num = String(i.whatsapp).replace(/\D/g,'');
+  const wsp = `https://wa.me/${num}?text=${encodeURIComponent(i.mensaje || '')}`;
+  document.querySelectorAll('.js-wsp').forEach(a => a.href = wsp);
+  document.getElementById('d-telefono').textContent = num.startsWith('51') ? '+51 ' + num.slice(2).replace(/(\d{3})(?=\d)/g,'$1 ') : num;
+  document.getElementById('r-instagram').href = i.instagram || '#';
+  document.getElementById('r-facebook').href = i.facebook || '#';
+  pintarLocal();
+}
+function pintarLocal(){
+  const ls = datos.locales; if (localActivo >= ls.length) localActivo = 0;
+  const tabs = document.getElementById('locales-tabs');
+  tabs.innerHTML = ls.length > 1 ? ls.map((l,k) => `<button role="tab" aria-selected="${k===localActivo}" data-l="${k}">${esc(l.nombre)}</button>`).join('') : '';
+  const l = ls[localActivo] || { direccion:'', horario:'', mapa:'' };
+  document.getElementById('d-direccion').textContent = l.direccion;
+  document.getElementById('d-horario').textContent = l.horario;
+  const q = encodeURIComponent(l.mapa || l.direccion);
+  document.getElementById('btn-mapa').href = 'https://www.google.com/maps/search/?api=1&query=' + q;
+  const src = 'https://maps.google.com/maps?q=' + q + '&z=16&output=embed';
+  const fr = document.getElementById('mapa'); if (fr.dataset.src !== src) { fr.dataset.src = src; fr.src = src; }
+}
+document.getElementById('locales-tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; localActivo = +b.dataset.l; pintarLocal(); });
+function pintarGaleria(){
+  document.getElementById('mosaico').innerHTML = datos.galeria.map(f =>
+    `<figure><img src="${esc(f.src)}" alt="${esc(f.texto || 'Foto de MamaQuilla')}" loading="lazy">${f.texto ? `<figcaption>${esc(f.texto)}</figcaption>` : ''}</figure>`).join('');
+}
+function pintarTodo(){ pintarCarta(); pintarInfo(); pintarGaleria(); }
+datos = normalizar(datos);
+pintarTodo();
+
+/* ============ CONEXIÓN CON LA BASE DE DATOS (Supabase) ============ */
+const CFG = window.MQ_CONFIG || {};
+let sb = null, sesion = null;
+const modoPrueba = () => !sb;
+function cargarScript(src){ return new Promise((ok, no) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = no; document.head.appendChild(s); }); }
+async function iniciarBase(){
+  if (!CFG.supabaseUrl || !CFG.supabaseAnonKey) return;
+  try {
+    await cargarScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
+    sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey);
+    const { data } = await sb.from('sitio').select('datos').eq('id', 1).maybeSingle();
+    if (data && data.datos) { datos = normalizar(data.datos); pintarTodo(); }
+    sesion = (await sb.auth.getSession()).data.session;
+    sb.auth.onAuthStateChange((_e, s) => { sesion = s; if (panel.classList.contains('abierto')) mostrarPanel(); });
+  } catch (err) { console.warn('No se pudo conectar a la base de datos, se usan los datos de la página.', err); sb = null; }
+}
+const listaBase = iniciarBase();
+
+/* ============ PANEL DE ADMINISTRACIÓN ============ */
+const panel = document.getElementById('panel');
+let borrador = null;
+const toast = msg => { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('ver'); setTimeout(() => t.classList.remove('ver'), 2600); };
+
+async function abrirPanel(){
+  await listaBase;
+  panel.classList.add('abierto'); panel.setAttribute('aria-hidden','false');
+  mostrarPanel();
+}
+function mostrarPanel(){
+  const necesitaLogin = !modoPrueba() && !sesion;
+  document.getElementById('aviso-panel').hidden = !modoPrueba();
+  document.getElementById('p-login').hidden = !necesitaLogin;
+  document.getElementById('p-editor').hidden = necesitaLogin;
+  document.getElementById('panel-pie').style.display = necesitaLogin ? 'none' : '';
+  if (necesitaLogin) { setTimeout(() => document.getElementById('l-correo').focus(), 50); return; }
+  document.getElementById('estado').innerHTML = modoPrueba() ? '<span>Modo de prueba</span>'
+    : `<span>Conectada como <strong>${esc(sesion.user.email)}</strong></span><button id="salir">Cerrar sesión</button>`;
+  borrador = JSON.parse(JSON.stringify(datos)); pintarPanel();
+}
+function cerrarPanel(){ panel.classList.remove('abierto'); panel.setAttribute('aria-hidden','true'); }
+document.getElementById('abrir-panel').onclick = abrirPanel;
+document.getElementById('cerrar-panel').onclick = cerrarPanel;
+panel.addEventListener('click', e => { if (e.target === panel) cerrarPanel(); });
+if (location.hash === '#admin' || location.hash === '#panel') abrirPanel();
+
+document.getElementById('form-login').onsubmit = async e => {
+  e.preventDefault();
+  const err = document.getElementById('l-error'); err.textContent = 'Entrando…';
+  const { error } = await sb.auth.signInWithPassword({ email: document.getElementById('l-correo').value.trim(), password: document.getElementById('l-clave').value });
+  if (error) { err.textContent = 'Correo o contraseña incorrectos.'; return; }
+  err.textContent = ''; sesion = (await sb.auth.getSession()).data.session; mostrarPanel();
+};
+
+document.querySelectorAll('[data-ptab]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-ptab]').forEach(x => x.setAttribute('aria-selected', x === b));
+  document.querySelectorAll('[data-pnl]').forEach(p => p.hidden = p.dataset.pnl !== b.dataset.ptab);
+});
+
+const campoTexto = (valor, attrs, ph='') => `<input value="${esc(valor)}" ${attrs} placeholder="${esc(ph)}">`;
+function pintarPanel(){
+  // Carta
+  document.getElementById('p-carta').innerHTML = borrador.categorias.map((c,ci) => `
+    <div class="p-cat">
+      <div class="p-cat-head">
+        ${campoTexto(c.nombre, `data-cat="${ci}" data-campo="nombre-cat" aria-label="Nombre de la categoría"`)}
+        <button class="ico-btn" data-borrar-cat="${ci}" title="Borrar categoría">✕</button>
+      </div>
+      ${c.items.map((it,ii) => `
+        <div class="p-item">
+          ${campoTexto(it.nombre, `data-cat="${ci}" data-item="${ii}" data-campo="nombre"`, 'Producto')}
+          ${campoTexto(it.desc, `class="p-desc" data-cat="${ci}" data-item="${ii}" data-campo="desc"`, 'Descripción')}
+          ${campoTexto(it.precio, `data-cat="${ci}" data-item="${ii}" data-campo="precio" inputmode="decimal"`, 'S/ 0')}
+          <button class="ico-btn" data-borrar-item="${ci}:${ii}" title="Borrar producto">✕</button>
+        </div>`).join('')}
+      <button class="mini" data-agregar-item="${ci}">+ Agregar producto</button>
+    </div>`).join('') + `<button class="mini" id="agregar-cat">+ Agregar categoría</button>`;
+
+  // Fotos
+  document.getElementById('p-fotos').innerHTML = `<p class="ayuda">La primera foto sale más grande. Usa las flechas para cambiar el orden.</p>
+    <div class="p-fotos">
+      <label class="subir">＋ Subir fotos<small>Desde tu celular o computadora. Se achican solas para que la web cargue rápido.</small>
+        <input type="file" id="subir-fotos" accept="image/*" multiple hidden></label>
+      ${borrador.galeria.map((f,k) => `
+        <div class="p-foto">
+          <img src="${esc(f.src)}" alt="">
+          <div class="cuerpo">
+            ${campoTexto(f.texto, `data-foto="${k}"`, 'Texto de la foto (opcional)')}
+            <div class="acciones">
+              <button data-mover="${k}:-1" title="Mover antes" ${k===0?'disabled':''}>←</button>
+              <button data-mover="${k}:1" title="Mover después" ${k===borrador.galeria.length-1?'disabled':''}>→</button>
+              <button class="rojo" data-borrar-foto="${k}" title="Quitar foto">Quitar</button>
+            </div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+
+  // Locales
+  document.getElementById('p-locales').innerHTML = borrador.locales.map((l,k) => `
+    <div class="p-cat">
+      <div class="p-cat-head">${campoTexto(l.nombre, `data-local="${k}" data-lcampo="nombre"`, 'Nombre (ej. Surco)')}<button class="ico-btn" data-borrar-local="${k}" title="Quitar local">✕</button></div>
+      <label>Dirección</label>${campoTexto(l.direccion, `data-local="${k}" data-lcampo="direccion"`)}
+      <label>Búsqueda en Google Maps</label>${campoTexto(l.mapa, `data-local="${k}" data-lcampo="mapa"`)}
+      <div class="ayuda" style="margin:4px 0 0">Escribe el nombre del local o la dirección tal como sale en Google Maps. El mapa de la web usa este texto.</div>
+      <label>Horario</label>${campoTexto(l.horario, `data-local="${k}" data-lcampo="horario"`)}
+    </div>`).join('') + `<button class="mini" id="agregar-local">+ Agregar local</button>`;
+
+  // Contacto
+  const i = borrador.info;
+  const campo = (k, etiqueta, tipo='input', ayuda='') => `<label for="f-${k}">${etiqueta}</label>${tipo==='area'
+    ? `<textarea id="f-${k}" data-info="${k}">${esc(i[k])}</textarea>`
+    : `<input id="f-${k}" data-info="${k}" value="${esc(i[k])}">`}${ayuda ? `<div class="ayuda" style="margin:4px 0 0">${ayuda}</div>` : ''}`;
+  document.getElementById('p-datos').innerHTML =
+    campo('whatsapp','Número de WhatsApp','input','Con código de país, sin espacios. Ej: 51987654321') +
+    campo('mensaje','Mensaje inicial de WhatsApp') + campo('instagram','Link de Instagram') + campo('facebook','Link de Facebook') +
+    campo('nota','Nota debajo de la carta','area');
+}
+
+panel.addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset.info) { borrador.info[t.dataset.info] = t.value; return; }
+  if (t.dataset.foto !== undefined) { borrador.galeria[+t.dataset.foto].texto = t.value; return; }
+  if (t.dataset.local !== undefined) { borrador.locales[+t.dataset.local][t.dataset.lcampo] = t.value; return; }
+  const ci = +t.dataset.cat;
+  if (t.dataset.campo === 'nombre-cat') borrador.categorias[ci].nombre = t.value;
+  else if (t.dataset.campo) borrador.categorias[ci].items[+t.dataset.item][t.dataset.campo] = t.value;
+});
+panel.addEventListener('click', async e => {
+  const t = e.target;
+  if (t.id === 'salir') { await sb.auth.signOut(); sesion = null; mostrarPanel(); return; }
+  if (t.dataset.agregarItem !== undefined) { borrador.categorias[+t.dataset.agregarItem].items.push({ nombre:'', desc:'', precio:'S/ ' }); pintarPanel(); }
+  else if (t.dataset.borrarItem) { const [c,i] = t.dataset.borrarItem.split(':').map(Number); borrador.categorias[c].items.splice(i,1); pintarPanel(); }
+  else if (t.dataset.borrarCat !== undefined) { if (confirm('¿Borrar esta categoría y todos sus productos?')) { borrador.categorias.splice(+t.dataset.borrarCat,1); pintarPanel(); } }
+  else if (t.id === 'agregar-cat') { borrador.categorias.push({ nombre:'Nueva categoría', items:[] }); pintarPanel(); }
+  else if (t.dataset.mover) { const [k,d] = t.dataset.mover.split(':').map(Number); const g = borrador.galeria; [g[k], g[k+d]] = [g[k+d], g[k]]; pintarPanel(); abrirTab('fotos'); }
+  else if (t.dataset.borrarFoto !== undefined) { if (confirm('¿Quitar esta foto de la web?')) { borrador.galeria.splice(+t.dataset.borrarFoto,1); pintarPanel(); abrirTab('fotos'); } }
+  else if (t.dataset.borrarLocal !== undefined) { if (confirm('¿Quitar este local?')) { borrador.locales.splice(+t.dataset.borrarLocal,1); pintarPanel(); abrirTab('locales'); } }
+  else if (t.id === 'agregar-local') { borrador.locales.push({ nombre:'Nuevo local', direccion:'', mapa:'', horario:'' }); pintarPanel(); abrirTab('locales'); }
+});
+function abrirTab(nombre){ document.querySelector(`[data-ptab="${nombre}"]`).click(); }
+
+// Achica la foto en el navegador antes de subirla (máx. 1600 px, JPG)
+function achicar(archivo, max = 1600){
+  return new Promise((ok, no) => {
+    const img = new Image(), url = URL.createObjectURL(archivo);
+    img.onload = () => {
+      const k = Math.min(1, max / Math.max(img.width, img.height));
+      const c = Object.assign(document.createElement('canvas'), { width: Math.round(img.width*k), height: Math.round(img.height*k) });
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      c.toBlob(b => b ? ok(b) : no(new Error('No se pudo leer la foto')), 'image/jpeg', .82);
+    };
+    img.onerror = () => no(new Error('Formato de foto no compatible')); img.src = url;
+  });
+}
+panel.addEventListener('change', async e => {
+  if (e.target.id !== 'subir-fotos') return;
+  const archivos = [...e.target.files]; if (!archivos.length) return;
+  toast(`Subiendo ${archivos.length} foto(s)…`);
+  let ok = 0;
+  for (const f of archivos) {
+    try {
+      const blob = await achicar(f);
+      let src;
+      if (modoPrueba()) src = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); });
+      else {
+        const ruta = `galeria/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
+        const { error } = await sb.storage.from('fotos').upload(ruta, blob, { contentType: 'image/jpeg', cacheControl: '31536000' });
+        if (error) throw error;
+        src = sb.storage.from('fotos').getPublicUrl(ruta).data.publicUrl;
+      }
+      borrador.galeria.unshift({ src, texto: '' }); ok++;
+    } catch (err) { console.error(err); toast('Una foto no se pudo subir: ' + (err.message || 'error')); }
+  }
+  pintarPanel(); abrirTab('fotos');
+  if (ok) toast(`${ok} foto(s) lista(s). Pulsa «Guardar cambios» para publicarlas.`);
+});
+
+document.getElementById('guardar').onclick = async () => {
+  borrador.categorias.forEach(c => c.items = c.items.filter(it => (it.nombre || '').trim()));
+  borrador.locales = borrador.locales.filter(l => (l.direccion || l.nombre || '').trim());
+  const nuevo = normalizar(JSON.parse(JSON.stringify(borrador)));
+  if (!modoPrueba()) {
+    const b = document.getElementById('guardar'); b.disabled = true; b.textContent = 'Guardando…';
+    const { error } = await sb.from('sitio').upsert({ id: 1, datos: nuevo, actualizado: new Date().toISOString() });
+    b.disabled = false; b.textContent = 'Guardar cambios';
+    if (error) { toast('No se pudo guardar: ' + error.message); return; }
+  }
+  datos = nuevo; pintarTodo(); borrador = JSON.parse(JSON.stringify(datos)); pintarPanel();
+  toast(modoPrueba() ? 'Cambios aplicados (modo de prueba)' : 'Listo, la web ya está actualizada');
+};
+document.getElementById('descargar').onclick = () => {
+  const blob = new Blob([JSON.stringify(borrador, null, 2)], { type:'application/json' });
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'mamaquilla-respaldo.json' });
+  a.click(); URL.revokeObjectURL(a.href);
+};
+document.getElementById('cargar').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try {
+    const d = JSON.parse(await f.text()); if (!d || !Array.isArray(d.categorias)) throw 0;
+    borrador = normalizar(d); pintarPanel(); toast('Respaldo cargado. Pulsa «Guardar cambios» para publicarlo.');
+  } catch { toast('Ese archivo no es un respaldo válido'); }
+  e.target.value = '';
+};
+</script>
+</body>
+</html>
